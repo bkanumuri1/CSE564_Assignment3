@@ -11,7 +11,7 @@ public class RandomNumberGenerator extends Observable {
     }
 
     public void generator () {
-        generatedData = 1945;
+        generatedData = (int) (Math.random()*200 + (1));
         setChanged();
         notifyObservers();
     }
