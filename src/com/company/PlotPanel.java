@@ -32,7 +32,8 @@ public class PlotPanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        int randomNumber = ((RandomNumberGenerator) o).getGeneratedData();
-        System.out.println(randomNumber);
+        int randomNumber1 = ((RandomNumberGenerator) o).generator();
+        int randomNumber2 = ((RandomNumberGenerator) o).generator();
+        System.out.println(randomNumber1);
     }
 }

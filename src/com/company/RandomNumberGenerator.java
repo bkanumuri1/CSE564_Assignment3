@@ -6,14 +6,13 @@ public class RandomNumberGenerator extends Observable {
 
     private int generatedData;
 
-    public int getGeneratedData() {
-        return generatedData;
-    }
+    
 
-    public void generator () {
+    public int generator () {
         generatedData = (int) (Math.random()*200 + (1));
         setChanged();
         notifyObservers();
+        return generatedData;
     }
 
 }
