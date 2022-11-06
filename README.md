@@ -2,6 +2,6 @@
 
 Assignment 3: 
 
-[] Class Diagram 
-[] Java Source code - with Observer, Decorator/Compsite, and Singleton patterns
-[] Javadoc 
+- [ ] Class Diagram 
+- [ ] Java Source code - with Observer, Decorator/Compsite, and Singleton patterns
+- [ ] Javadoc 
