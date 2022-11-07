@@ -10,7 +10,7 @@ public interface Drawable {
     public static final int BORDER_GAP = 30;
     public static final Color GRAPH_COLOR = Color.blue;
     public static final Color GRAPH_POINT_COLOR = Color.blue;
-    public static final Color GRAPH_BAR_COLOR = new Color(192, 192, 192,180);
+    public static final Color GRAPH_BAR_COLOR = Color.DARK_GRAY;
     public static final Color GRAPH_AVG_LINE = Color.red;
     public static final Stroke GRAPH_STROKE = new BasicStroke(3f);
     public static final int GRAPH_POINT_WIDTH = 8;

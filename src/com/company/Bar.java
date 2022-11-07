@@ -4,7 +4,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Bar extends Decorator{
 
     @Override    
@@ -26,11 +25,9 @@ public class Bar extends Decorator{
         for (int i = 0; i < data.getData().size(); i++) {
             int x1 = (int) (i * xScale + BORDER_GAP);
             int y1 = (int) ((MAX_SCORE - data.getData().get(i)) * yScale + BORDER_GAP);
-            System.out.println(x1+","+y1);
             graphPoints.add(new Point(x1, y1));
         }
 
-        // to draw line
         Stroke oldStroke = g2.getStroke();
         g2.setColor(GRAPH_COLOR);
         g2.setStroke(GRAPH_STROKE);
@@ -42,7 +39,6 @@ public class Bar extends Decorator{
             g2.drawLine(x1, y1, x2, y2);
         }
 
-//         to draw marker
         g2.setStroke(oldStroke);
         g2.setColor(GRAPH_POINT_COLOR);
         for (int i = 0; i < graphPoints.size(); i++) {
@@ -53,7 +49,6 @@ public class Bar extends Decorator{
             g2.fillRect(x, y, ovalW, ovalH);
         }
 
-       // to draw bar length
        g2.setStroke(oldStroke);
        g2.setColor(GRAPH_BAR_COLOR);
        for (int i = 0; i < graphPoints.size(); i++) {
@@ -63,8 +58,7 @@ public class Bar extends Decorator{
            int ovalH = GRAPH_POINT_WIDTH;
            g2.fillRect(x, y+ovalH, ovalW, PREF_H);
        }
-
-        // to draw avg line
+       
         g2.setStroke(oldStroke);
         g2.setColor(GRAPH_AVG_LINE);
         int total = 0;
@@ -72,6 +66,5 @@ public class Bar extends Decorator{
             total+= graphPoints.get(i).y;
         }
         g.drawLine(0,total/graphPoints.size(), PREF_W, total/graphPoints.size());
-
     }
 }

@@ -1,10 +1,10 @@
 package com.company;
-
 import java.util.List;
 
 public class AverageEvaluator {
 
     private static AverageEvaluator instance;
+    
     private AverageEvaluator(){
     }
 

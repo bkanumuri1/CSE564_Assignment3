@@ -31,6 +31,7 @@ public class PlotPanel implements Observer {
          Drawable linePlot = new Line();
          linePanel = linePlot.draw();
          linePanel.setBounds(0,400,500,200);
+         linePanel.setBackground(Color.GRAY);
          parentPanel.add(linePanel);
 
          Line linePlot2 = new Line();
@@ -38,6 +39,7 @@ public class PlotPanel implements Observer {
          dotPlot.addDecorator(linePlot2);
          dotPanel = dotPlot.draw();
          dotPanel.setBounds(0,200,500,200);
+         dotPanel.setBackground(Color.LIGHT_GRAY);
          parentPanel.add(dotPanel);
 
          Line linePlot3 = new Line();
@@ -47,7 +49,7 @@ public class PlotPanel implements Observer {
          barPlot.addDecorator(dotPlot2);
          barPanel = barPlot.draw();
          barPanel.setBounds(0,0,500,200);
-         
+         barPanel.setBackground(Color.WHITE);
          parentPanel.add(barPanel);
 
     }
