@@ -13,5 +13,7 @@ public class AverageEvaluator {
         return instance;
     }
 
-    public void calculate(){}
+    public void calculate(){
+        
+    }
 }

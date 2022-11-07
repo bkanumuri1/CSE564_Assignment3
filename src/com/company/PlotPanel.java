@@ -2,38 +2,54 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.ArrayList;
+import java.util.List;
+public class PlotPanel implements Observer {
+    protected List<Integer> data = new ArrayList<>();
+    static protected PlotPanel plotPanel;
+    protected JPanel linePanel, dotPanel, barPanel;
+    protected JLayeredPane parentPanel;
+    private PlotPanel(){
+        parentPanel = new JLayeredPane();
+        parentPanel.setBounds(0,0,500,600);
+        parentPanel.setBackground(Color.gray);
+    }
 
-public class PlotPanel extends JPanel implements Observer {
-
-    PlotPanel(){
-        JPanel panel1 = new JPanel();
-        panel1.setBounds(50,70,10,10);
-        panel1.setSize(850,200);
-        panel1.add(new JLabel("This is panel 1"));
-        panel1.setBackground(Color.lightGray);
-        add(panel1);
-
-        JPanel panel2 = new JPanel();
-        panel2.setBounds(50,350,10,10);
-        panel2.setSize(850,200);
-        panel2.add(new JLabel("This is panel 2"));
-        panel2.setBackground(Color.LIGHT_GRAY);
-        add(panel2);
-
-        JPanel panel3 = new JPanel();
-        panel3.setBounds(50,450,10,10);
-        panel3.setSize(850,200);
-        panel3.add(new JLabel("This is panel 3"));
-        panel3.setBackground(Color.LIGHT_GRAY);
-        add(panel3);
+    public static PlotPanel getPlotPanel(){
+        if(plotPanel==null)
+            plotPanel= new PlotPanel();
+        return plotPanel;
     }
 
     @Override
-    public void update(Observable o, Object arg) {
-        int randomNumber1 = ((RandomNumberGenerator) o).generator();
-        int randomNumber2 = ((RandomNumberGenerator) o).generator();
-        System.out.println(randomNumber1);
+    public void update(List<Integer> data) {
+        this.data=data;
+        drawPanels(data);
     }
+
+    public void drawPanels(List<Integer> data){
+         Drawable linePlot = new Line();
+         linePanel = linePlot.draw();
+         linePanel.setBounds(0,400,500,200);
+         parentPanel.add(linePanel);
+
+         Line linePlot2 = new Line();
+         Dots dotPlot = new Dots();
+         dotPlot.addDecorator(linePlot2);
+         dotPanel = dotPlot.draw();
+         dotPanel.setBounds(0,200,500,200);
+         parentPanel.add(dotPanel);
+
+         Line linePlot3 = new Line();
+         Dots dotPlot2 = new Dots();
+         Bar barPlot = new Bar();
+         dotPlot2.addDecorator(linePlot3);
+         barPlot.addDecorator(dotPlot2);
+         barPanel = barPlot.draw();
+         barPanel.setBounds(0,0,500,200);
+         
+         parentPanel.add(barPanel);
+
+    }
+
 }
