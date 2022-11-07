@@ -2,6 +2,8 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class RandomNumberGenerator extends Observable {
 
@@ -18,9 +20,14 @@ public class RandomNumberGenerator extends Observable {
 	}
     
     public void generate () {
-        for(int i=0;i<50;i++)
-            randomNumbers.add( (int) (Math.random() * 200) + 1);        
-        notifyObservers();
+            TimerTask task = new TimerTask() {
+            public void run() {
+                randomNumbers.add( (int) (Math.random() * 200) + 1);
+                notifyObservers();
+            }
+        };
+        Timer timer = new Timer(true);
+        timer.schedule(task, 0, 500); 
     }
 
     @Override

@@ -7,8 +7,7 @@ import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.Dimension;
-import java.awt.*;
+
 public class Line extends JPanel implements Drawable {
     @Override    
     public JPanel draw() {
@@ -33,7 +32,6 @@ public class Line extends JPanel implements Drawable {
            graphPoints.add(new Point(x1, y1));
        }
 
-       // to draw line
        Stroke oldStroke = g2.getStroke();
        g2.setColor(GRAPH_COLOR);
        g2.setStroke(GRAPH_STROKE);
