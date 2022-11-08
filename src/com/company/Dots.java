@@ -19,7 +19,6 @@ public class Dots extends Decorator{
      * @return new panel
      */
     public JPanel draw(){
-        System.out.print("Dot");
         return new Dots();
     }
     @Override
@@ -31,15 +30,12 @@ public class Dots extends Decorator{
         super.paint(g);
         Graphics2D g2 = (Graphics2D)g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        double xScale = ((double) getWidth() - 2 * BORDER_GAP) / (data.getData().size() - 1);
-        double yScale = ((double) getHeight() - 2 * BORDER_GAP) / (MAX_SCORE - 1);
-
+        double xScale = ((double) getWidth() - 2) / (data.getData().size() - 1);
+        double yScale = ((double) getHeight() - 2) / (MAX_SCORE - 1);
         List<Point> graphPoints = new ArrayList<Point>();
         for (int i = 0; i < data.getData().size(); i++) {
-            int x1 = (int) (i * xScale + BORDER_GAP);
-            int y1 = (int) ((MAX_SCORE - data.getData().get(i)) * yScale + BORDER_GAP);
-            System.out.println(x1+","+y1);
+            int x1 = (int) (i * xScale);
+            int y1 = (int) ((MAX_SCORE - data.getData().get(i)) * yScale);
             graphPoints.add(new Point(x1, y1));
         }
         Stroke oldStroke = g2.getStroke();
@@ -50,25 +46,20 @@ public class Dots extends Decorator{
             int y1 = graphPoints.get(i).y;
             int x2 = graphPoints.get(i + 1).x;
             int y2 = graphPoints.get(i + 1).y;
+            int ovalW = GRAPH_POINT_WIDTH;
+            int ovalH = GRAPH_POINT_WIDTH;
             g2.drawLine(x1, y1, x2, y2);
+            x1 -= GRAPH_POINT_WIDTH / 2;
+            y1 -= GRAPH_POINT_WIDTH / 2;
+            g2.fillRect(x1, y1, ovalW, ovalH);
         }
-       g2.setStroke(oldStroke);
-       g2.setColor(GRAPH_POINT_COLOR);
-       for (int i = 0; i < graphPoints.size(); i++) {
-           int x = graphPoints.get(i).x - GRAPH_POINT_WIDTH / 2;
-           int y = graphPoints.get(i).y - GRAPH_POINT_WIDTH / 2;;
-           int ovalW = GRAPH_POINT_WIDTH;
-           int ovalH = GRAPH_POINT_WIDTH;
-           g2.fillRect(x, y, ovalW, ovalH);
-       }
         g2.setStroke(oldStroke);
         g2.setColor(GRAPH_AVG_LINE);
         int total = 0;
         for (int i = 0; i < graphPoints.size(); i++) {
             total+= graphPoints.get(i).y;
         }
-        g.drawLine(0,AverageEvaluator.getAverageEvaluator().calculate(total, graphPoints.size()), PREF_W, AverageEvaluator.getAverageEvaluator().calculate(total, graphPoints.size()));
-
+        g.drawLine(0,AverageEvaluator.getAverageEvaluator().calculate(graphPoints), PREF_W, AverageEvaluator.getAverageEvaluator().calculate(graphPoints));
     }
 
 }

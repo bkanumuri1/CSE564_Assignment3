@@ -9,7 +9,6 @@ public interface Drawable {
     public static final int MAX_SCORE = 200;
     public static final int PREF_W = 500;
     public static final int PREF_H = 200;
-    public static final int BORDER_GAP = 30;
     public static final Color GRAPH_COLOR = Color.blue;
     public static final Color GRAPH_POINT_COLOR = Color.blue;
     public static final Color GRAPH_BAR_COLOR = Color.DARK_GRAY;

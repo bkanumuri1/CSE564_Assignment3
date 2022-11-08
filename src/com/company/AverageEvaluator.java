@@ -1,4 +1,6 @@
 package com.company;
+import java.util.*;
+import java.awt.Point;
 /**
  * Singleton class that calculates the average of data points generated in graph
  * @author Haritej Lakshmi Narayan , Bhavana Priya Kanumuri
@@ -19,11 +21,15 @@ public class AverageEvaluator {
     }
     /**
      * Calculates the
-     * @param total sum of all values randomly generated in graph
-     * @param size of values present in graph at that instant of time
+     * @param list of random Points
      * @return int average of data points generated in graph
      */
-    public int calculate(int total, int size){
-        return total/size;
+    public int calculate(List<Point> points){
+        int total = 0;
+        int size=points.size();
+       for (int i = 0; i < size; i++) {
+           total+= points.get(i).y;
+       }
+       return total/size;
     }
 }

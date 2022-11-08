@@ -9,7 +9,7 @@ public class App extends JFrame implements ActionListener {
     static RandomNumberGenerator data= RandomNumberGenerator.getRandomNumberGenerator();
     static PlotPanel plotPanel = PlotPanel.getPlotPanel();
     App(){
-         add(plotPanel.parentPanel);
+        add(plotPanel.parentPanel);
         JButton runButton = new JButton("Run");
         runButton.setBounds(0,600,500,50);
         runButton.addActionListener(this);
