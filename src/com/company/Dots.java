@@ -8,15 +8,25 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 
+/**
+ * A decorator for the line graph, extends the Decorator class.
+ * @author Haritej Lakshmi Narayan , Bhavana Priya Kanumuri
+ */
 public class Dots extends Decorator{
-
-    @Override    
+    @Override
+    /**
+     * method inherited from parent class(Decorator) to create a new JPanel
+     * @return new panel
+     */
     public JPanel draw(){
         System.out.print("Dot");
         return new Dots();
     }
-
     @Override
+    /**
+     * Plots the graph in panel
+     * @param g creates the dots in graph
+     */
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2 = (Graphics2D)g;
@@ -32,8 +42,6 @@ public class Dots extends Decorator{
             System.out.println(x1+","+y1);
             graphPoints.add(new Point(x1, y1));
         }
-
-        // to draw line
         Stroke oldStroke = g2.getStroke();
         g2.setColor(GRAPH_COLOR);
         g2.setStroke(GRAPH_STROKE);
@@ -44,8 +52,6 @@ public class Dots extends Decorator{
             int y2 = graphPoints.get(i + 1).y;
             g2.drawLine(x1, y1, x2, y2);
         }
-
-//         to draw marker
        g2.setStroke(oldStroke);
        g2.setColor(GRAPH_POINT_COLOR);
        for (int i = 0; i < graphPoints.size(); i++) {
@@ -55,26 +61,13 @@ public class Dots extends Decorator{
            int ovalH = GRAPH_POINT_WIDTH;
            g2.fillRect(x, y, ovalW, ovalH);
        }
-//
-//       // to draw bar length
-//       g2.setStroke(oldStroke);
-//       g2.setColor(GRAPH_BAR_COLOR);
-//       for (int i = 0; i < graphPoints.size(); i++) {
-//           int x = graphPoints.get(i).x - GRAPH_POINT_WIDTH / 2;
-//           int y = graphPoints.get(i).y - GRAPH_POINT_WIDTH / 2;;
-//           int ovalW = GRAPH_POINT_WIDTH;
-//           int ovalH = GRAPH_POINT_WIDTH;
-//           g2.fillRect(x, y+ovalH, ovalW, PREF_H);
-//       }
-
-        // to draw avg line
         g2.setStroke(oldStroke);
         g2.setColor(GRAPH_AVG_LINE);
         int total = 0;
         for (int i = 0; i < graphPoints.size(); i++) {
             total+= graphPoints.get(i).y;
         }
-        g.drawLine(0,total/graphPoints.size(), PREF_W, total/graphPoints.size());
+        g.drawLine(0,AverageEvaluator.getAverageEvaluator().calculate(total, graphPoints.size()), PREF_W, AverageEvaluator.getAverageEvaluator().calculate(total, graphPoints.size()));
 
     }
 

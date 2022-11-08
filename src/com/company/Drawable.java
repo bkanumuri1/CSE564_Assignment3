@@ -1,8 +1,10 @@
 package com.company;
 import java.awt.*;
 import javax.swing.*;
-//import java.awt.Graphics;
-
+/**
+ * Top interface for decorator pattern. Defines static vars used for designing the graphs in JPanels
+ * @author Haritej Lakshmi Narayan , Bhavana Priya Kanumuri
+ */
 public interface Drawable {
     public static final int MAX_SCORE = 200;
     public static final int PREF_W = 500;

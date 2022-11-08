@@ -1,24 +1,29 @@
 package com.company;
-import java.util.List;
-
+/**
+ * Singleton class that calculates the average of data points generated in graph
+ * @author Haritej Lakshmi Narayan , Bhavana Priya Kanumuri
+ */
 public class AverageEvaluator {
-
     private static AverageEvaluator instance;
-    
-    private AverageEvaluator(){
+    private AverageEvaluator() {
     }
-
+    /**
+     * creates a new instance if there is no instance present or returns a pre-existing instance
+     * @return instance of average evaluator
+     */
     public static AverageEvaluator getAverageEvaluator(){
         if(instance == null){
             instance = new AverageEvaluator();
         }
         return instance;
     }
-
-    public int calculate(List<Integer> data){
-        int sum=0;
-        for(int i: data)
-            sum+=i;
-        return sum/data.size();
+    /**
+     * Calculates the
+     * @param total sum of all values randomly generated in graph
+     * @param size of values present in graph at that instant of time
+     * @return int average of data points generated in graph
+     */
+    public int calculate(int total, int size){
+        return total/size;
     }
 }

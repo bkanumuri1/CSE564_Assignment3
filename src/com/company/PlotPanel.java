@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Concrete observer class that plots the panel by observing the data from RandomNumberGenerator
+ * @author Haritej Lakshmi Narayan , Bhavana Priya Kanumuri
+ */
 public class PlotPanel implements Observer {
     protected List<Integer> data = new ArrayList<>();
     static protected PlotPanel plotPanel;
@@ -15,6 +20,10 @@ public class PlotPanel implements Observer {
         parentPanel.setBackground(Color.gray);
     }
 
+    /**
+     *creates an instance of PlotPanel (singleton pattern)
+     * @return new panel
+     */
     public static PlotPanel getPlotPanel(){
         if(plotPanel==null)
             plotPanel= new PlotPanel();
@@ -22,11 +31,17 @@ public class PlotPanel implements Observer {
     }
 
     @Override
+    /**
+     * updates the data observed from the observable(RandomNumberGenerator)
+     */
     public void update(List<Integer> data) {
         this.data=data;
         drawPanels(data);
     }
-
+    /**
+     * Draws the new panel
+     * @param data
+     */
     public void drawPanels(List<Integer> data){
          Drawable linePlot = new Line();
          linePanel = linePlot.draw();
@@ -51,7 +66,5 @@ public class PlotPanel implements Observer {
          barPanel.setBounds(0,0,500,200);
          barPanel.setBackground(Color.WHITE);
          parentPanel.add(barPanel);
-
     }
-
 }
